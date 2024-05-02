@@ -27,7 +27,7 @@ public class Shop {
         System.out.println("Shop data:");
         Scanner keyboard = new Scanner(System.in);
         byte type = keyboard.nextByte();
-        String name = keyboard.nextLine();
+        String name = keyboard.next();
         int purchaseCount = keyboard.nextInt();
         int numberOfDocOrCard = keyboard.nextInt();
         keyboard.close();

@@ -25,7 +25,7 @@ public class CashCustomer extends Customer{
     
     @Override
     public void customerInfo() {
-        System.out.printf("Customer %s (passport: %x) has a discount %x% \n"
+        System.out.printf("Customer %s (passport: %d) has a discount %d%% \n"
                 , super.getName()
                 , this.getDocumentNumber()
                 , super.getDiscountSize());

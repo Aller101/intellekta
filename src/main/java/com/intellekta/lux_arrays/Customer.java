@@ -22,8 +22,9 @@ public abstract class Customer {
         }
         if (purchaseCount > 0) {
             this.purchaseCount = purchaseCount;
-        }
+        }else{
         this.purchaseCount = 0;
+        }
     }
 
     public String getName() {

@@ -11,8 +11,15 @@ package com.intellekta.lux_arrays;
 public class Test {
     
     public static void main(String[] args) {
-        Customer c1 = new CardCustomer("Alex", 6, 666);
+        Customer c1 = new CardCustomer("Alex", 11, 56790);
+        
+        System.out.println(c1.getDiscountSize());
+        System.out.println(c1.getPurchaseCount());
         c1.customerInfo();
+        
+        Shop shop = new Shop();
+//        shop.printShopSummary();
+        Shop.createShopInfo();
     }
     
 }

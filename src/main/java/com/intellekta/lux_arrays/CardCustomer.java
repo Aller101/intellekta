@@ -18,7 +18,7 @@ public class CardCustomer extends Customer{
     
     @Override
     public void customerInfo() {
-            System.out.printf("Customer %s (card: %x) has a discount %x% \n"
+            System.out.printf("Customer %s (card: %d) has a discount %d%% \n"
                 , super.getName()
                 , this.getCardNumber()
                 , super.getDiscountSize());
