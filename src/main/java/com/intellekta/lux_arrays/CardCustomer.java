@@ -10,7 +10,7 @@ package com.intellekta.lux_arrays;
  */
 public class CardCustomer extends Customer{
 
-    private int cardNumber;
+    private final int cardNumber;
 
     public int getCardNumber() {
         return cardNumber;

@@ -10,14 +10,13 @@ package com.intellekta.lux_arrays;
  */
 public class CashCustomer extends Customer{
 
-    private int documentNumber;
+    private final int documentNumber;
 
     public CashCustomer(String name, int purchaseCount, int documentNumber) {
         super(name, purchaseCount);
         this.documentNumber = documentNumber;
     }
 
-  
 
     public int getDocumentNumber() {
         return documentNumber;
@@ -30,12 +29,5 @@ public class CashCustomer extends Customer{
                 , this.getDocumentNumber()
                 , super.getDiscountSize());
     }
-
-//    @Override
-//    public String toString() {
-//        return "CashCustomer{" + "documentNumber=" + documentNumber + '}';
-//    }
-
-  
     
 }

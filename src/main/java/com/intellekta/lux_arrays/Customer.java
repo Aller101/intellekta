@@ -10,20 +10,20 @@ package com.intellekta.lux_arrays;
  */
 public abstract class Customer {
 
-    private String name;
+    private final String name;
     private int purchaseCount;
     private int discountSize;
 
     public Customer(String name, int purchaseCount) {
-        if ((name != null) && (!name.equals(""))) {
+        if ((!name.isBlank())) {
             this.name = name;
         } else {
             this.name = "No-name";
         }
         if (purchaseCount > 0) {
             this.purchaseCount = purchaseCount;
-        }else{
-        this.purchaseCount = 0;
+        } else {
+            this.purchaseCount = 0;
         }
     }
 
@@ -52,12 +52,13 @@ public abstract class Customer {
     }
 
     public void setPurchaseCount(int purchaseCount) {
-        this.purchaseCount = purchaseCount;
+        if (purchaseCount > 0) {
+            this.purchaseCount = purchaseCount;
+        } else {
+            this.purchaseCount = 0;
+        }
     }
 
     public abstract void customerInfo();
-
-
-    
 
 }
