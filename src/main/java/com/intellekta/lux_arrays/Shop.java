@@ -25,9 +25,9 @@ public class Shop {
     public static Shop createShopInfo() {
         System.out.println("Shop data:");
 
-        String s1 = "2,Alex,3,,1212";
-        String s2 = "1,Oleg,7,2323,";
-        String s3 = "2,Misha,90,,3434";
+        String s1 = "2,Alex,3,,1234567890987654";
+        String s2 = "1,Oleg,7,2323 990022,";
+        String s3 = "2,Misha,90,,123123123123123";
         String s4 = "exit";
         String s5 = s1 + "\n" + s2 + "\n" + s3 + "\n" + s4;
         Shop shop = new Shop();
@@ -50,16 +50,16 @@ public class Shop {
             int type;
             String name;
             int purchaseCount;
-            int documentNumber;
-            int cardNumber;
+            String documentNumber;
+            String cardNumber;
             Customer newCustomer;
             try (Scanner lineScanner = new Scanner(input).useDelimiter(",")) {
 
                 type = checkHasNextInt(lineScanner);
-                name = lineScanner.next();
+                name = checkHasNext(lineScanner);
                 purchaseCount = checkHasNextInt(lineScanner);
-                documentNumber = checkHasNextInt(lineScanner);
-                cardNumber = checkHasNextInt(lineScanner);
+                documentNumber = checkHasNext(lineScanner);
+                cardNumber = checkHasNext(lineScanner);
                 
                 System.out.println(type);
                 System.out.println(name);
@@ -80,7 +80,7 @@ public class Shop {
         return shop;
     }
 
-    //проверка:
+    //проверка int:
     //есть что читать (если читать нечего - возвращает 0, каретка не двигается), 
     //если есть что читать - возвращает значение int 
     //или двигает каретку и возвращает 0
@@ -94,6 +94,22 @@ public class Shop {
             }
         } else {
             return 0;
+        }
+    }
+    //проверка String:
+    //есть что читать (если читать нечего - возвращает "", каретка не двигается), 
+    //если есть что читать - возвращает значение String 
+    //или двигает каретку и возвращает ""
+    public static String checkHasNext(Scanner scanner) {
+        if (scanner.hasNext()) {
+            if (scanner.hasNext()) {
+                return scanner.next();
+            } else {
+                scanner.next();
+                return "";
+            }
+        } else {
+            return "";
         }
     }
 }

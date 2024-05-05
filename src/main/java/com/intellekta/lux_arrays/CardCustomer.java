@@ -8,27 +8,31 @@ package com.intellekta.lux_arrays;
  *
  * @author alekseynesterov
  */
-public class CardCustomer extends Customer{
+public class CardCustomer extends Customer {
 
-    private final int cardNumber;
+    private final String cardNumber;
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
-    
+
     @Override
     public void customerInfo() {
-            System.out.printf("Customer %s (card: %d) has a discount %d%% \n"
-                , super.getName()
-                , this.getCardNumber()
-                , super.getDiscountSize());
+        String nl = System.getProperty("line.separator");
+        System.out.printf("Customer %s (card: %s) has a discount %d%% %s",
+                super.getName(),
+                this.getCardNumber(),
+                super.getDiscountSize(),
+                nl);
     }
 
-    public CardCustomer(String name, int purchaseCount, int cardNumber) {
+    public CardCustomer(String name, int purchaseCount, String cardNumber) {
         super(name, purchaseCount);
-        this.cardNumber = cardNumber;
-    }
+        if (!cardNumber.isBlank()) {
+            this.cardNumber = cardNumber;
+        } else {
+            this.cardNumber = "0000000000000000";
+        }
 
-   
-    
+    }
 }
