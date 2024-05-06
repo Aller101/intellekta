@@ -28,6 +28,17 @@ public class Test {
 //        Shop.checkHasNext(scanner);
 //        scanner.close();
 
+
+
+
+        String s1 = "1,Tola,3,1234 123456,";
+        String s2 = "2,Kata,16,,1234567890987654";
+        String s3 = "2,Jora,16,,1234567890987654";
+        String s4 = "1,Mishka,7,,1234567890987654";
+        String s5 = "exit";
+        String s6 = s1 + "\n" + s2 + "\n" + s3 + "\n" + s4 + "\n" + s5;
+        Scanner scanner = new Scanner(s6);
+
         Shop shop = Shop.createShopInfo();
         
         shop.printShopSummary();

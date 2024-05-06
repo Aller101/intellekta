@@ -7,7 +7,6 @@ package com.intellekta.lux_arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -29,15 +28,8 @@ public class Shop {
         Shop shop = new Shop();
         shop.shopCustomers = new ArrayList<>();
 
-        String s1 = "1,Tola,3,1234 123456,";
-        String s2 = "2,Kata,16,,1234567890987654";
-        String s3 = "2,Jora,16,,1234567890987654";
-        String s4 = "1,Mishka,7,,1234567890987654";
-        String s5 = "exit";
-        String s6 = s1 + "\n" + s2 + "\n" + s3 + "\n" + s4 + "\n" + s5;
-//        Scanner scanner = new Scanner(System.in);
-        Scanner scanner = new Scanner(s6);
 
+        Scanner scanner = new Scanner(System.in);
         while (true) {
 
             String input = scanner.nextLine();
@@ -90,7 +82,6 @@ public class Shop {
             return 0;
         }
     }
-
     //проверка String:
     //есть что читать (если читать нечего - возвращает "", каретка не двигается), 
     //если есть что читать - возвращает значение String 
@@ -98,7 +89,6 @@ public class Shop {
     public static String checkHasNext(Scanner scanner) {
         if (scanner.hasNext()) {
             if (scanner.hasNext()) {
-
                 return scanner.next();
             } else {
                 scanner.next();
@@ -108,8 +98,4 @@ public class Shop {
             return "";
         }
     }
-
-  
-
-   
 }
