@@ -14,11 +14,19 @@ import java.util.Scanner;
 public class Test {
 
     public static void main(String[] args) {
-        Customer c1 = new CardCustomer("Alex", 11, "");
-        Customer c2 = new CashCustomer("Alex", 4, "");
+//        Customer c1 = new CardCustomer("Alex", 11, "");
+//        Customer c2 = new CashCustomer("Alex", 4, null);
+//        
+//        c2.customerInfo();
+//        c1.customerInfo();
         
-        c2.customerInfo();
-        c1.customerInfo();
+//        String s1 = "1,Tola,3,1234 123456,,";
+//        String s2 = "2,Kata,16,,,1234567890987654";
+//        
+//        Scanner scanner = new Scanner(s2).useDelimiter(",");
+//        
+//        Shop.checkHasNext(scanner);
+//        scanner.close();
 
         Shop shop = Shop.createShopInfo();
         

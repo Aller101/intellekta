@@ -12,18 +12,20 @@ public abstract class Customer {
 
     private final String name;
     private int purchaseCount;
-    private int discountSize;
+    private double discountSize;
 
     public Customer(String name, int purchaseCount) {
-        if ((!name.isBlank())) {
+        if ((name != null) && (!name.isBlank())) {
             this.name = name;
         } else {
             this.name = "No-name";
         }
         if (purchaseCount > 0) {
             this.purchaseCount = purchaseCount;
+            this.discountSize = discountSize(this.purchaseCount);
         } else {
             this.purchaseCount = 0;
+            this.discountSize = 0;
         }
     }
 
@@ -31,20 +33,8 @@ public abstract class Customer {
         return name;
     }
 
-    public int getDiscountSize() {
-        if (purchaseCount > 4) {
-            if (purchaseCount < 10) {
-                if (purchaseCount < 15) {
-                    return 10;
-                } else {
-                    return 20;
-                }
-            } else {
-                return 5;
-            }
-        } else {
-            return 0;
-        }
+    public double getDiscountSize() {
+      return discountSize(this.purchaseCount);
     }
 
     public int getPurchaseCount() {
@@ -60,5 +50,23 @@ public abstract class Customer {
     }
 
     public abstract void customerInfo();
+    
+    //размер скидки, учит. кол-во покупок
+    public static double discountSize(int purchaseCount){
+        if (purchaseCount > 4) {
+            if (purchaseCount < 10) {
+                if (purchaseCount < 15) {
+                    return 0.1;
+                } else {
+                    return 0.2;
+                }
+            } else {
+                return 0.05;
+            }
+        } else {
+            return 0;
+        }
+    }
+   
 
 }

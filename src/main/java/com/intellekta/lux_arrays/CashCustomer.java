@@ -4,6 +4,8 @@
  */
 package com.intellekta.lux_arrays;
 
+import java.util.regex.Pattern;
+
 /**
  *
  * @author alekseynesterov
@@ -14,8 +16,12 @@ public class CashCustomer extends Customer {
 
     public CashCustomer(String name, int purchaseCount, String documentNumber) {
         super(name, purchaseCount);
-        if (!documentNumber.isBlank()) {
-            this.documentNumber = documentNumber;
+        if ((documentNumber != null) && (!documentNumber.isBlank())) {
+            if (documentIsValid(documentNumber)) {
+                this.documentNumber = documentNumber;
+            } else {
+                this.documentNumber = "0000 000000";
+            }
         } else {
             this.documentNumber = "0000 000000";
         }
@@ -31,8 +37,13 @@ public class CashCustomer extends Customer {
         System.out.printf("Customer %s (passport: %s) has a discount %d%% %s",
                 super.getName(),
                 this.getDocumentNumber(),
-                super.getDiscountSize(),
+                (int) (super.getDiscountSize() * 100),
                 nl);
+    }
+// Паттерн для проверки строки **** ******
+    public static boolean documentIsValid(String input) {
+        String pattern = "\\d{4} \\d{6}";
+        return Pattern.matches(pattern, input);
     }
 
 }

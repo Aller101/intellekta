@@ -7,6 +7,7 @@ package com.intellekta.lux_arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -25,18 +26,17 @@ public class Shop {
     public static Shop createShopInfo() {
         System.out.println("Shop data:");
 
-        String s1 = "2,Alex,3,,1234567890987654";
-        String s2 = "1,Oleg,7,2323 990022,";
-        String s3 = "2,Misha,90,,123123123123123";
-        String s4 = "exit";
-        String s5 = s1 + "\n" + s2 + "\n" + s3 + "\n" + s4;
         Shop shop = new Shop();
         shop.shopCustomers = new ArrayList<>();
 
-        System.out.println(s5);
-
+        String s1 = "1,Tola,3,1234 123456,";
+        String s2 = "2,Kata,16,,1234567890987654";
+        String s3 = "2,Jora,16,,1234567890987654";
+        String s4 = "1,Mishka,7,,1234567890987654";
+        String s5 = "exit";
+        String s6 = s1 + "\n" + s2 + "\n" + s3 + "\n" + s4 + "\n" + s5;
 //        Scanner scanner = new Scanner(System.in);
-        Scanner scanner = new Scanner(s5);
+        Scanner scanner = new Scanner(s6);
 
         while (true) {
 
@@ -60,12 +60,6 @@ public class Shop {
                 purchaseCount = checkHasNextInt(lineScanner);
                 documentNumber = checkHasNext(lineScanner);
                 cardNumber = checkHasNext(lineScanner);
-                
-                System.out.println(type);
-                System.out.println(name);
-                System.out.println(purchaseCount);
-                System.out.println(documentNumber);
-                System.out.println(cardNumber);
 
             }
             if (type == 1) {
@@ -96,6 +90,7 @@ public class Shop {
             return 0;
         }
     }
+
     //проверка String:
     //есть что читать (если читать нечего - возвращает "", каретка не двигается), 
     //если есть что читать - возвращает значение String 
@@ -103,6 +98,7 @@ public class Shop {
     public static String checkHasNext(Scanner scanner) {
         if (scanner.hasNext()) {
             if (scanner.hasNext()) {
+
                 return scanner.next();
             } else {
                 scanner.next();
@@ -112,4 +108,8 @@ public class Shop {
             return "";
         }
     }
+
+  
+
+   
 }
