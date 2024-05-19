@@ -8,16 +8,6 @@ package com.intellekta.generics.middleearth.unit;
  *
  * @author alekseynesterov
  */
-public class MiddleEarthUnit extends Unit{
-    
-    public MiddleEarthUnit(String name) {
-        super(name);
-    }
+public interface MiddleEarthUnit extends Unit {
 
-    
-    
-
-  
-    
-    
 }

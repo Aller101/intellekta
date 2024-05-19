@@ -4,12 +4,12 @@
  */
 package com.intellekta.generics.middleearth.unit;
 
+import com.intellekta.generics.middleearth.unit.Unit;
+
 /**
  *
  * @author alekseynesterov
  */
-public interface Unit {
-
-    String getName();
+public interface Infantry extends Unit {
 
 }

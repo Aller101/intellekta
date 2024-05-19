@@ -4,58 +4,47 @@
  */
 package com.intellekta.generics.middleearth;
 
-import com.intellekta.generics.middleearth.unit.MordorUnit;
+import com.intellekta.generics.middleearth.unit.Cavalry;
 import com.intellekta.generics.middleearth.unit.MiddleEarthUnit;
+import com.intellekta.generics.middleearth.unit.MordorUnit;
+import com.intellekta.generics.middleearth.unit.Unit;
+import com.intellekta.generics.middleearth.unit.impl.MiddleEarthCavalry;
+import com.intellekta.generics.middleearth.unit.impl.MiddleEarthInfantry;
+import com.intellekta.generics.middleearth.unit.impl.MordorCavalry;
+import com.intellekta.generics.middleearth.unit.impl.MordorInfantry;
 
 /**
  *
  * @author alekseynesterov
  */
-public class Test {
+public class Test{
     public static void main(String[] args) {
-        Army<MiddleEarthUnit> army1 = new Army();
-        Army army2 = new Army();
         
-        MiddleEarthUnit man1 = new MiddleEarthUnit("mr. Vasia");
-        MiddleEarthUnit man2 = new MiddleEarthUnit("mr. Kolia");
+        MiddleEarthUnit u1 = new MiddleEarthCavalry("Stepa");
+        MiddleEarthUnit u2 = new MiddleEarthCavalry("Fedia");
+        MiddleEarthUnit u3 = new MiddleEarthInfantry("Kostia");
         
-        MordorUnit orc1 = new MordorUnit("ogr. ick");
-        MordorUnit orc2 = new MordorUnit("ogr. Fiona");
+        MordorUnit u4 = new MordorCavalry("Shreak");
+        MordorUnit u5 = new MordorInfantry("Fiona");
+        MordorUnit u6 = new MordorInfantry("Ogr");
         
-//        army1.recruit(new Cavalry<>(orc1));
-        
-        Cavalry<MiddleEarthUnit> c1 = new Cavalry(new MiddleEarthUnit("mr. Oleg"));
-//        Cavalry<MordorUnit> c2 = new Cavalry<>(new MiddleEarthUnit("mr. Tim"));
-        Cavalry<MiddleEarthUnit> c3 = new Cavalry<>(new MiddleEarthUnit("mr. Yasha"));
-        Cavalry<MordorUnit> c4 = new Cavalry<>(new MordorUnit("ogr. Shrek"));
-        Cavalry<MiddleEarthUnit> c5 = new Cavalry<>(null);
+        Army<MiddleEarthUnit> army1 = new Army<>(MiddleEarthUnit.class);
+        army1.recruit(u1);
+        army1.recruit(u2);
+        army1.recruit(u3);
         
         
-        Infantry<MiddleEarthUnit> i1 = new Infantry<>(man1);
-//        Cavalry<MiddleEarthUnit> c6 = new Cavalry<>(orc2);
-        
-        army1.recruit(c1);
-//        army1.recruit(c2);
-        army1.recruit(c3);
-//        army1.recruit(c4);
-        army1.recruit(c5);
-        army1.recruit(i1);
-//        army1.recruit(c6);
-//        army1.recruit(middleEarthUnit);
-        
-//        System.out.println(army1.getCavalry());
-//        System.out.println(army1.getInfantry());
-        
-        
-        
+//        System.out.println(army1.getArmy());
+//        army1.print();
+//        System.out.println(army1.getRandomUnit(u1));
+//        System.out.println(army1.getRandomUnit());
+        army1.release(u2);
         army1.print();
         
-//        army1.release("Shrek");
-        army1.print();
         
-        MiddleEarthUnit m = army1.getRandomUnit();
-        MiddleEarthUnit m2 = army1.getRandomUnit(c3);
-        System.out.println(m);
+   
     }
     
 }
+
+

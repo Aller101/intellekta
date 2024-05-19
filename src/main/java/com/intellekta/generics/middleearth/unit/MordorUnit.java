@@ -8,13 +8,6 @@ package com.intellekta.generics.middleearth.unit;
  *
  * @author alekseynesterov
  */
-public class MordorUnit extends Unit{
-    
-    public MordorUnit(String name) {
-        super(name);
-    }
-    
-    
-    
-    
+public interface MordorUnit extends Unit {
+
 }

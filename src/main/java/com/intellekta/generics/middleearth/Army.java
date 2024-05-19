@@ -4,6 +4,8 @@
  */
 package com.intellekta.generics.middleearth;
 
+import com.intellekta.generics.middleearth.unit.Infantry;
+import com.intellekta.generics.middleearth.unit.Cavalry;
 import com.intellekta.generics.middleearth.unit.Unit;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,74 +17,77 @@ import java.util.Random;
  */
 public class Army<T extends Unit> {
 
-    private List<Cavalry<T>> cavalry = new ArrayList<>();
-    private List<Infantry<T>> infantry = new ArrayList<>();
+    private ArrayList<Cavalry> cavalry = new ArrayList<>();
+    private ArrayList<Infantry> infantry = new ArrayList<>();
 
-    public List<Cavalry<T>> getCavalry() {
+    private Class<T> type;
+
+    public Army(Class<T> type) {
+        this.type = type;
+    }
+
+    public ArrayList<Cavalry> getCavalry() {
         return cavalry;
     }
 
-    public List<Infantry<T>> getInfantry() {
+    public ArrayList<Infantry> getInfantry() {
         return infantry;
     }
 
     //возвращает список всех войнов (в последовательности:
     //сначала вся кавалерия, затем вся пехота)
-    public List<T> getArmy() {
-        List<T> list = new ArrayList<>();
-        for (Cavalry<T> c : cavalry) {
-            list.add(c.getUnit());
+    public ArrayList<T> getArmy() {
+        ArrayList<T> list = new ArrayList<>();
+        for (Cavalry c : cavalry) {
+            list.add((T) c);
         }
-        for (Infantry<T> i : infantry) {
-            list.add(i.getUnit());
+        for (Infantry i : infantry) {
+            list.add((T) i);
         }
         return list;
     }
 
-    //метод для найма кавалерии
-    public boolean recruit(Cavalry<T> c) {
-        if ((c.getUnit() != null)
-                && (!c.getName().isBlank())) {
-            cavalry.add(c);
-            return true;
-        } else {
-            return false;
+    //метод для найма кавалерии и пехоты
+    public boolean recruit(T unit) {
+        if (type.isInstance(unit)) {
+            if (unit instanceof Cavalry) {
+                if ((unit != null)
+                        && (!unit.getName().isBlank())) {
+                    cavalry.add((Cavalry) unit);
+                    return true;
+                } else {
+                    return false;
+                }
+            } else if (unit instanceof Infantry) {
+                if ((unit != null)
+                        && (!unit.getName().isBlank())) {
+                    infantry.add((Infantry) unit);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
-    }
 
-    //метод для найма пехоты
-    public boolean recruit(Infantry<T> i) {
-        if ((i.getUnit() != null)
-                && (!i.getName().isBlank())) {
-            infantry.add(i);
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     public void print() {
-        for (Cavalry<T> c : cavalry) {
-            System.out.println(c);
+
+        String nl = System.getProperty("line.separator");
+        for (Cavalry c : cavalry) {
+            System.out.printf("%s%s", c, nl);
         }
-        for (Infantry<T> i : infantry) {
-            System.out.println(i);
+        for (Infantry i : infantry) {
+            System.out.printf("%s%s", i, nl);
         }
     }
 
-    public boolean release(T t) {
-        String name = t.getName();
-        for (Cavalry<T> c : cavalry) {
-            if (c.getUnit().getName().equals(name)) {
-                cavalry.remove(c);
-                return true;
-            }
-        }
-        for (Infantry<T> i : infantry) {
-            if (i.getUnit().getName().equals(name)) {
-                infantry.remove(i);
-                return true;
-            }
+    public boolean release(T unit) {
+        if(unit instanceof Cavalry){
+            return cavalry.remove(unit);
+        }else if(unit instanceof Infantry){
+            return infantry.remove(unit);
         }
         return false;
     }
@@ -97,31 +102,26 @@ public class Army<T extends Unit> {
             return null;
         }
     }
-    
+
     //перегруженный метод для получения случайного воина из армии,
     //тип которого указан в параметрах к методу
-    public T getRandomUnit(Cavalry<T> t) {
-        
-        List<Cavalry<T>> listCavalrys = this.getCavalry();
-        if (!listCavalrys.isEmpty()) {
-            Random random = new Random();
-            return listCavalrys.get(random.nextInt(listCavalrys.size())).getUnit();
-        } else {
-            return null;
+    public T getRandomUnit(T unit) {
+        if (unit instanceof Cavalry) {
+            if (!cavalry.isEmpty()) {
+                Random random = new Random();
+                return (T) cavalry.get(random.nextInt(cavalry.size()));
+            } else {
+                return null;
+            }
+        } else if (unit instanceof Infantry) {
+            if (!infantry.isEmpty()) {
+                Random random = new Random();
+                return (T) infantry.get(random.nextInt(infantry.size()));
+            } else {
+                return null;
+            }
         }
-    }
-    
-    //перегруженный метод для получения случайного воина из армии,
-    //тип которого указан в параметрах к методу
-    public T getRandomUnit(Infantry<T> t) {
-        
-        List<Infantry<T>> listInfantrys = this.getInfantry();
-        if (!listInfantrys.isEmpty()) {
-            Random random = new Random();
-            return listInfantrys.get(random.nextInt(listInfantrys.size())).getUnit();
-        } else {
-            return null;
-        }
+        return null;
     }
 
     @Override
