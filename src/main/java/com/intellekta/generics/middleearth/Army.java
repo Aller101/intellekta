@@ -52,7 +52,8 @@ public class Army<T extends Unit> {
         if (type.isInstance(unit)) {
             if (unit instanceof Cavalry) {
                 if ((unit != null)
-                        && (!unit.getName().isBlank())) {
+//                        && (!unit..isBlank())
+                        ) {
                     cavalry.add((Cavalry) unit);
                     return true;
                 } else {
@@ -60,7 +61,8 @@ public class Army<T extends Unit> {
                 }
             } else if (unit instanceof Infantry) {
                 if ((unit != null)
-                        && (!unit.getName().isBlank())) {
+//                        && (!unit.getName().isBlank())
+                        ) {
                     infantry.add((Infantry) unit);
                     return true;
                 } else {

@@ -4,14 +4,16 @@
  */
 package com.intellekta.generics.middleearth;
 
-import com.intellekta.generics.middleearth.unit.Cavalry;
-import com.intellekta.generics.middleearth.unit.MiddleEarthUnit;
-import com.intellekta.generics.middleearth.unit.MordorUnit;
-import com.intellekta.generics.middleearth.unit.Unit;
-import com.intellekta.generics.middleearth.unit.impl.MiddleEarthCavalry;
-import com.intellekta.generics.middleearth.unit.impl.MiddleEarthInfantry;
-import com.intellekta.generics.middleearth.unit.impl.MordorCavalry;
-import com.intellekta.generics.middleearth.unit.impl.MordorInfantry;
+import com.intellekta.generics.middleearth.unit.middleearthunit.MiddleEarthUnit;
+import com.intellekta.generics.middleearth.unit.middleearthunit.impl.Elf;
+import com.intellekta.generics.middleearth.unit.middleearthunit.impl.Rohhirim;
+import com.intellekta.generics.middleearth.unit.middleearthunit.impl.Wizard;
+import com.intellekta.generics.middleearth.unit.middleearthunit.impl.WoodenElf;
+import com.intellekta.generics.middleearth.unit.mordorunit.MordorUnit;
+import com.intellekta.generics.middleearth.unit.mordorunit.impl.Goblin;
+import com.intellekta.generics.middleearth.unit.mordorunit.impl.Troll;
+import com.intellekta.generics.middleearth.unit.mordorunit.impl.UrukHai;
+
 
 /**
  *
@@ -20,28 +22,65 @@ import com.intellekta.generics.middleearth.unit.impl.MordorInfantry;
 public class Test{
     public static void main(String[] args) {
         
-        MiddleEarthUnit u1 = new MiddleEarthCavalry("Stepa");
-        MiddleEarthUnit u2 = new MiddleEarthCavalry("Fedia");
-        MiddleEarthUnit u3 = new MiddleEarthInfantry("Kostia");
+        Rohhirim rohhirim = new Rohhirim("Eomer");
+        Wizard wizard = new Wizard("Gandalf");
+        Elf elf = new Elf("Legolas");
+        WoodenElf woodenElf = new WoodenElf("Fangorn");
         
-        MordorUnit u4 = new MordorCavalry("Shreak");
-        MordorUnit u5 = new MordorInfantry("Fiona");
-        MordorUnit u6 = new MordorInfantry("Ogr");
-        
-        Army<MiddleEarthUnit> army1 = new Army<>(MiddleEarthUnit.class);
-        army1.recruit(u1);
-        army1.recruit(u2);
-        army1.recruit(u3);
+        Goblin goblin = new Goblin("Muzgash");
+        UrukHai urukHai = new UrukHai("Shagrat");
+        Troll troll = new Troll("Troll");
         
         
-//        System.out.println(army1.getArmy());
-//        army1.print();
-//        System.out.println(army1.getRandomUnit(u1));
-//        System.out.println(army1.getRandomUnit());
-        army1.release(u2);
-        army1.print();
         
         
+        Army armyOfFriends = new Army(MiddleEarthUnit.class);
+        Army armyOfEnemies = new Army(MordorUnit.class);
+        
+        armyOfFriends.recruit(rohhirim);
+        armyOfFriends.recruit(wizard);
+        armyOfFriends.recruit(elf);
+        armyOfFriends.recruit(woodenElf);
+        
+        armyOfEnemies.recruit(goblin);
+        armyOfEnemies.recruit(troll);
+        armyOfEnemies.recruit(urukHai);
+        
+        
+        
+        armyOfFriends.print();
+        System.out.println("");
+        armyOfEnemies.print();
+        System.out.println("");
+        
+        rohhirim.strike(urukHai);
+        System.out.println(urukHai.warg.isAlive());
+        rohhirim.strike(urukHai);
+        System.out.println(urukHai.isAlive());
+        System.out.println("");
+        
+        System.out.println(troll.toString());
+        rohhirim.strike(troll);
+        System.out.println(troll.isAlive());
+        System.out.println("");
+        
+        goblin.strike(rohhirim);
+        System.out.println(rohhirim.isAlive());
+        System.out.println(rohhirim.toString());
+        System.out.println(rohhirim.horse.getPower());
+        System.out.println("");
+        goblin.strike(rohhirim);
+        System.out.println(rohhirim.isAlive());
+        System.out.println(rohhirim.toString());
+        System.out.println(rohhirim.horse.getPower());
+        System.out.println("");
+        goblin.strike(rohhirim);
+        System.out.println(rohhirim.isAlive());
+        System.out.println(rohhirim.toString());
+        System.out.println(rohhirim.horse.getPower());
+        armyOfFriends.print();
+        armyOfEnemies.print();
+
    
     }
     

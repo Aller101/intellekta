@@ -4,7 +4,6 @@
  */
 package com.intellekta.generics.middleearth.unit;
 
-import com.intellekta.generics.middleearth.unit.Unit;
 
 /**
  *
