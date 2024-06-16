@@ -33,6 +33,8 @@ public abstract class AbstractUnit implements Unit {
             this.power = 0;
         }
     }
+    
+    
 
     @Override
     public boolean isAlive() {

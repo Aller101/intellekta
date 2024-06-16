@@ -26,6 +26,10 @@ public class Army<T extends Unit> {
         this.type = type;
     }
 
+    public Class<T> getType() {
+        return type;
+    }
+
     public ArrayList<Cavalry> getCavalry() {
         return cavalry;
     }
