@@ -37,11 +37,11 @@ public class Battle {
     public static void fight() {
         Army armyOfEnemies = new Army(MordorUnit.class);
         createArmy(armyOfEnemies);
-//        armyOfEnemies.print();
+        armyOfEnemies.print();
 
         Army armyOfFriends = new Army(MiddleEarthUnit.class);
         createArmy(armyOfFriends);
-//        armyOfFriends.print();
+        armyOfFriends.print();
 
         fight(armyOfEnemies, armyOfFriends);
     }
