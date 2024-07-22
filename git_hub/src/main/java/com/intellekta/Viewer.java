@@ -4,6 +4,9 @@
  */
 package com.intellekta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author alekseynesterov
@@ -16,10 +19,20 @@ public class Viewer {
 
     private int numberViews;
 
-    public Viewer(String nickname, int age, int numberViews) {
-        this.nickname = (nickname != null && !nickname.isEmpty()) ?  nickname : "noname";
+    private final ArrayList<Cinema> films = new ArrayList<>();
+
+    public Viewer(String nickname, int age, List<Cinema> films) {
+        this.nickname = (nickname != null && !nickname.isEmpty()) ? nickname : "noname";
         this.age = age > 0 ? age : 0;
-        this.numberViews = numberViews > 0 ? numberViews : 0;
+        if (films != null && !films.isEmpty()) {
+            for (Cinema film : films) {
+                if (film != null) {
+                    this.films.add(film);
+                }
+            }
+        }
+        this.numberViews = this.films.size();
+
     }
 
     public String getNickname() {
@@ -30,7 +43,6 @@ public class Viewer {
         this.nickname = (nickname != null && !nickname.isEmpty()) ? nickname : "noname";
     }
 
-    
     public int getAge() {
         return age;
     }
@@ -41,18 +53,34 @@ public class Viewer {
 
     public int getNumberViews() {
         return numberViews;
-        
+
     }
 
-    public void setNumberViews(int numberViews) {
-        this.numberViews = numberViews > 0 ? numberViews : 0;
-    }
-    
     @Override
     public String toString() {
-        return "Viewer{" + "nickname=" + nickname + ", age=" + age + ", numberViews=" + numberViews + '}';
+        return "Viewer{" + "nickname=" + nickname + ", age=" + age + ", numberViews=" + numberViews + ", films=" + films + '}';
     }
-    
-    
+
+    public ArrayList<Cinema> getFilms() {
+        return films;
+    }
+
+    public void setFilms(ArrayList<Cinema> films) {
+        if (films != null && !films.isEmpty()) {
+            for (Cinema film : films) {
+                if (film != null) {
+                    this.films.add(film);
+                }
+            }
+        }
+        this.numberViews = this.films.size();
+    }
+
+    public void setFilms(Cinema film) {
+        if (film != null) {
+            this.films.add(film);
+        }
+        this.numberViews = this.films.size();
+    }
 
 }

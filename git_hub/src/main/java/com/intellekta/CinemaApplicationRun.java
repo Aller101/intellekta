@@ -19,11 +19,11 @@ public class CinemaApplicationRun {
         
         ArrayList<Viewer> lists = new ArrayList<>(List.of(
                 
-                new Viewer("Ola", 12, 3),
-                new Viewer("Kola", 13, 33),
-                new Viewer("Tolia", 38, 12),
-                new Viewer("Sam", 56, 76),
-                new Viewer("Tanuxa", 47, 7)
+                new Viewer("Ola", 12, List.of(new Cinema("swsw","wsws",2.2),new Cinema("wvrvrvrv","nyn", 1.2))),
+                new Viewer("Kola", 13, List.of(new Cinema())),
+                new Viewer("Tolia", 38, null),
+                new Viewer("Sam", 56, List.of(new Cinema("12","12",4),new Cinema("23","23",3),new Cinema("34","34",2.4),new Cinema("45","45",1),new Cinema("56","56",3))),
+                new Viewer("Tanuxa", 47, List.of(new Cinema(), new Cinema("sese","ccd",5)))
                 
         ));
 
