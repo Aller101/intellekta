@@ -23,8 +23,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Entity
 @Table(name = "SALES")
@@ -45,4 +43,18 @@ public class SalesJPA {
 
     @Column(name = "product")
     private int product;
+
+    public SalesJPA(int price, Date dateFrom, Date dateTo, int product) {
+        this.price = price;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.product = product;
+    }
+
+    public SalesJPA() {
+    }
+    
+    
+    
+    
 }

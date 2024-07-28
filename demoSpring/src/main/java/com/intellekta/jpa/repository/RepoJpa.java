@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author alekseynesterov
  */
 @Repository
-public interface RepoJpa extends JpaRepository<SalesJPA, Integer>{
+public interface RepoJPA extends JpaRepository<SalesJPA, Integer>{
     
 }

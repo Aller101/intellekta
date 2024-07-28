@@ -18,8 +18,6 @@ import lombok.ToString;
 
 @Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Sales {
     
@@ -32,6 +30,19 @@ public class Sales {
     private Date dateTo;
     
     private int product;
+
+    public Sales(int price, Date dateFrom, Date dateTo, int product) {
+        this.price = price;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.product = product;
+    }
+
+    public Sales() {
+    }
+    
+    
+    
    
     
 }
