@@ -16,7 +16,7 @@ import org.springframework.context.ApplicationContext;
  *
  * @author alekseynesterov
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class StartApp {
 
 

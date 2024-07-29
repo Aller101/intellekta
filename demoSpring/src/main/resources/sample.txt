@@ -1,0 +1,161 @@
+@Configuration
+public class MvcConfig implements WebMvcConfigurer {
+
+    public void addViewContr(ViewControllerRegistry registry) {
+        registry.addViewController("/home").setViewName("home");
+        registry.addViewController("/").setViewName("home");
+        registry.addViewController("/hello").setViewName("hello");
+        registry.addViewController("/login").setViewName("login");
+
+//        registry.addViewController("/login").setViewName("login");
+//        registry.addViewController("/home").setViewName("home");
+    }
+
+}
+
+----------------------------------------
+
+
+@Controller
+public class MyController {
+    
+    private String nameOfUser = "User";
+    
+    private ServiceJPA serviceJPA;
+
+    public MyController(ServiceJPA serviceJPA) {
+        this.serviceJPA = serviceJPA;
+    }
+    
+
+    @GetMapping("/login")
+    public String createUserForm() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String createUser(@RequestParam("name") String name) {
+        if (!name.equals("User")) {
+            nameOfUser = name;
+        }
+        System.out.println(name);
+        return "redirect:/home";
+    }
+
+    @GetMapping("/home")
+    public String homePage(Model model) {
+        List<SalesJPA> sales = serviceJPA.getSalesWherePriceMoreThan100();
+        model.addAttribute("name", nameOfUser);
+        model.addAttribute("sales", sales);
+        return "home";
+    }
+
+//    @PostMapping("/home")
+//    public String addDataToDb(@RequestParam("price") int price, @RequestParam("receipt_of_goods") Date receipt_of_goods, @RequestParam("sale_of_goods") Date sale_of_goods, @RequestParam("id_product") int id_product) {
+//        SalesJPA data = new SalesJPA(price, receipt_of_goods, sale_of_goods, id_product);
+//        System.out.println(data);
+//        serviceJPA.addSaleToTable(data);
+//        return "redirect:/home";
+//    }
+}
+
+
+
+-------------------------------------
+
+
+
+login
+
+  <body>
+        <h1>TechIndustry</h1>
+        <br>
+        <br>
+
+        <!--        <div th:if="${param.eror}">
+                    invalid username and password
+                </div>
+        
+                <div th:if="${param.logout}">
+                    you have been logget out
+                </div>-->
+
+        <form th:action="@{/login}" method="post">
+            <div><label>Username: <input type="text" name="name"/> </label></div>
+            <div><input type="submit" value="Sign in"/> </div>
+        </form>
+
+
+    </body>
+
+
+
+------------------------------
+
+
+home
+
+   <body>
+
+        <h1>TechIndustry</h1>
+        <br>
+        <br>
+
+
+        <p th:text="|Good day to you, ${name}!|"></p>
+        <div th:switch="${sales}">
+            <h2 th:case="null">No Users found</h2>
+            <div th:case="*">
+                <h2>Sales</h2>
+                <table border="1">
+                    <thead>
+                        <tr align="center">
+                            <th>Id</th>
+                            <th>Price</th>
+                            <th>Receipt of Goods</th>
+                            <th>Sale of goods</th>
+                            <th>Id of product</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="salesEntity : ${sales}" align="center">
+                            <td th:text="${salesEntity.id}"></td>
+                            <td th:text="${salesEntity.price}"></td>
+                            <td th:text="${salesEntity.dateFrom}"></td>
+                            <td th:text="${salesEntity.dateTo}"></td>
+                            <td th:text="${salesEntity.product}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p>Чтобы добавить информацию в БД, заполните все поля:</p>
+        <form th:action="@{/home}" method="post">
+            <ul class="wrapper">
+                <li class="form-row">
+                    <label for="id">Id</label>
+                    <input type="text" id="id" name="id"/>
+                </li>
+                <li class="form-row">
+                    <label for="price">Price</label>
+                    <input type="text" id="price" name="price"/>
+                </li>
+                <li class="form-row">
+                    <label for="receipt">Receipt of goods</label>
+                    <input type="text" id="receipt" name="receipt_of_goods"/>
+                </li>
+                <li class="form-row">
+                    <label for="sale">Sale of goods</label>
+                    <input type="text" id="sale" name="sale_of_goods"/>
+                </li>
+                <li class="form-row">
+                    <label for="id_product">Product</label>
+                    <input type="text" id="id_product" name="id_product"/>
+                </li>
+                <li class="form-row">
+                    <input type="submit" value="Отправить">
+                </li>
+            </ul>
+        </form>
+
+    </body>
