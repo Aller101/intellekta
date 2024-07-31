@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <title>messages</title>
+        <link rel="stylesheet" type="text/css" href="/styles.css">
+    </head>
+    <body>
+
+
+        <div class="container">
+            <h1>Welcome, {{username}}</h1>
+
+            <h2>Add a new message</h2>
+            <form action="/add-message" method="post">
+
+
+                <input type="text" name="text" placeholder="Enter your message" required>
+                <input type="hidden" name="username" value="{{username}}">
+                <button type="submit">Add</button>
+
+
+            </form>
+
+            <h2>Filtr messages by sender</h2>
+            <form action="/filter" method="get">
+
+                <input type="text" name="senderName" placeholder="Sender name">
+                <input type="hidden" name="username" value="{{username}}">
+                <button type="submit">Filter</button>
+            </form>
+
+            <h2>All messages</h2>
+            <ul>
+                {{#messages}}
+                <li><strong>{{name}}:</strong> {{text}}</li>
+                {{/messages}}
+            </ul>
+        </div>
+
+    </body>
+</html>

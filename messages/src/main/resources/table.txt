@@ -1,0 +1,11 @@
+create table messages_db.messages (
+id int primary key auto_increment,
+text varchar(50) not null,
+name varchar(30) not null
+);
+
+insert into messages_db.messages (text, name) values
+('privet kak dela','Alex'),
+('horosho a y tebia vse tip top','Kirril'),
+('kakaja pogoda na ylice','Alex'),
+('bobo','Max');
